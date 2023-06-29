@@ -1,9 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+interface Figura {
+    double calcularPerimetro();
 
-public interface Figura {
-  public String tipo="";
-  public double calcularArea();
-    public double calcularPerimetro();
+    double calcularArea();
+
+    double calcularAreaSuperficial();
+
+    double calcularVolumen();
+
+    void mostrarDatos();
 }

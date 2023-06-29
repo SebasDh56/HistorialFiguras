@@ -1,6 +1,7 @@
-public class Punto {
-
-    double x,y,z;
+class Punto {
+    private double x;
+    private double y;
+    private double z;
 
     public Punto(double x, double y, double z) {
         this.x = x;
@@ -31,4 +32,5 @@ public class Punto {
     public void setZ(double z) {
         this.z = z;
     }
+
 }
