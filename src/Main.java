@@ -107,6 +107,7 @@ public class Main {
 
             System.out.println("1. Calcular perímetro");
             System.out.println("2. Calcular área");
+            System.out.println("3. Calcular Volumen");
             int opcionCalculo = scanner.nextInt();
 
             if (opcionCalculo == 1) {
@@ -115,6 +116,11 @@ public class Main {
             } else if (opcionCalculo == 2) {
                 double area = figura.calcularArea();
                 System.out.println("El área es: " + area);
+
+            } else if (opcionCalculo == 3) {
+                double volumen = figura.calcularVolumen();
+                System.out.println("El volumen es: " + volumen);
+
             } else {
                 System.out.println("Opción inválida.");
             }
