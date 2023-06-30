@@ -1,11 +1,6 @@
-interface Figura {
+public interface Figura {
     double calcularPerimetro();
-
     double calcularArea();
-
-    double calcularAreaSuperficial();
-
-    double calcularVolumen();
-
-    void mostrarDatos();
+    void ingresarPuntos();
+    void mostrarHistorial();
 }

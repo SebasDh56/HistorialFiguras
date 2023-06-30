@@ -1,63 +1,49 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class Cuadrado implements Figura {
-    private Punto punto1;
-    private Punto punto2;
-
-    public Cuadrado() {
-        super();
-        setNombre("Cuadrado");
-    }
-
-    private void setNombre(String cuadrado) {
-    }
-
-
-    public void ingresarPuntos() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Ingrese las coordenadas del primer punto (x, y, z):");
-        double x1 = scanner.nextDouble();
-        double y1 = scanner.nextDouble();
-        double z1 = scanner.nextDouble();
-        punto1 = new Punto(x1, y1, z1);
-
-        System.out.println("Ingrese las coordenadas del segundo punto (x, y, z):");
-        double x2 = scanner.nextDouble();
-        double y2 = scanner.nextDouble();
-        double z2 = scanner.nextDouble();
-        punto2 = new Punto(x2, y2, z2);
-    }
-
-
+class Cuadrado implements Figura {
+    private List<Punto> listaPuntos = new ArrayList<>();
 
     @Override
     public double calcularPerimetro() {
-        double lado1 = Math.abs(punto2.getX() - punto1.getX());
-        double lado2 = Math.abs(punto2.getY() - punto1.getY());
-        double lado3 = Math.abs(punto2.getZ() - punto1.getZ());
-        return 4 * (lado1 + lado2 + lado3);
+        double lado = calcularDistancia(0, 1);
+        return lado * 4;
     }
 
     @Override
     public double calcularArea() {
-        double lado1 = Math.abs(punto2.getX() - punto1.getX());
-        double lado2 = Math.abs(punto2.getY() - punto1.getY());
-        double lado3 = Math.abs(punto2.getZ() - punto1.getZ());
-        return lado1 * lado2 * lado3;
+        double lado = calcularDistancia(0, 1);
+        return lado * lado;
     }
 
     @Override
-    public double calcularAreaSuperficial() {
-        return 0;
+    public void ingresarPuntos() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingresa la componente x:");
+        double x = sc.nextDouble();
+        System.out.println("Ingresa la componente y:");
+        double y = sc.nextDouble();
+        System.out.println("Ingresa la componente z:");
+        double z = sc.nextDouble();
+
+        Punto punto = new Punto(x, y, z);
+        listaPuntos.add(punto);
     }
 
     @Override
-    public double calcularVolumen() {
-        return 0;
+    public void mostrarHistorial() {
+        for (int i = 0; i < listaPuntos.size(); i++) {
+            System.out.println("Punto " + (i + 1) + ": " + listaPuntos.get(i));
+        }
     }
 
-    @Override
-    public void mostrarDatos() {
-
+    private double calcularDistancia(int i, int j) {
+        Punto punto1 = listaPuntos.get(i);
+        Punto punto2 = listaPuntos.get(j);
+        double distancia = Math.sqrt(Math.pow(punto1.getX() - punto2.getX(), 2) +
+                Math.pow(punto1.getY() - punto2.getY(), 2) +
+                Math.pow(punto1.getZ() - punto2.getZ(), 2));
+        return distancia;
     }
 }
