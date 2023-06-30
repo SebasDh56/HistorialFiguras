@@ -17,7 +17,8 @@ class Circulo implements Figura {
 
     @Override
     public double calcularPerimetro() {
-        return 0;
+        return 2 * Math.PI * radio;
+
     }
 
     @Override

@@ -6,7 +6,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         List<Figura> figuras = new ArrayList<>();
-        Timelab espera = new Timelab();
 
         while (true) {
             System.out.println("\nSeleccione una figura:");
@@ -61,9 +60,15 @@ public class Main {
                     figura = new Triangulo(x3, y3, z3, x4, y4, z4, x5, y5, z5);
                     break;
                 case 4:
-                    System.out.println("Ingrese la longitud del lado del cubo:");
-                    double ladoCubo = scanner.nextDouble();
-                    figura = new Cubo(ladoCubo);
+                    System.out.println("Ingrese las coordenadas del primer punto (x y z):");
+                    double x6 = scanner.nextDouble();
+                    double y6 = scanner.nextDouble();
+                    double z6 = scanner.nextDouble();
+                    System.out.println("Ingrese las coordenadas del segundo punto (x y z):");
+                    double x7 = scanner.nextDouble();
+                    double y7 = scanner.nextDouble();
+                    double z7 = scanner.nextDouble();
+                    figura = new Cubo(x6, y6, z6, x7, y7, z7);
                     break;
                 case 5:
                     System.out.println("Ingrese las coordenadas del primer punto (x y z):");
@@ -78,23 +83,11 @@ public class Main {
                     double x10 = scanner.nextDouble();
                     double y10 = scanner.nextDouble();
                     double z10 = scanner.nextDouble();
-                    System.out.println("Ingrese las coordenadas del cuarto punto (x y z):");
+                    System.out.println("Ingrese las coordenadas del vértice (x y z):");
                     double x11 = scanner.nextDouble();
                     double y11 = scanner.nextDouble();
                     double z11 = scanner.nextDouble();
-                    System.out.println("Ingrese las coordenadas del quinto punto (x y z):");
-                    double x12 = scanner.nextDouble();
-                    double y12 = scanner.nextDouble();
-                    double z12 = scanner.nextDouble();
-                    System.out.println("Ingrese las coordenadas del sexto punto (x y z):");
-                    double x13 = scanner.nextDouble();
-                    double y13 = scanner.nextDouble();
-                    double z13 = scanner.nextDouble();
-                    System.out.println("Ingrese las coordenadas del vértice (x y z):");
-                    double x14 = scanner.nextDouble();
-                    double y14 = scanner.nextDouble();
-                    double z14 = scanner.nextDouble();
-                    figura = new Piramide(x8, y8, z8, x9, y9, z9, x10, y10, z10, x11, y11, z11, x12, y12, z12, x13, y13, z13, x14, y14, z14);
+                    figura = new Piramide(x8, y8, z8, x9, y9, z9, x10, y10, z10, x11, y11, z11);
                     break;
                 case 6:
                     System.out.println("Ingrese el radio de la esfera:");
@@ -114,22 +107,14 @@ public class Main {
 
             System.out.println("1. Calcular perímetro");
             System.out.println("2. Calcular área");
-            System.out.println("3. Calcular volumen");
-
             int opcionCalculo = scanner.nextInt();
 
             if (opcionCalculo == 1) {
                 double perimetro = figura.calcularPerimetro();
                 System.out.println("El perímetro es: " + perimetro);
-                espera.Espera();
             } else if (opcionCalculo == 2) {
                 double area = figura.calcularArea();
                 System.out.println("El área es: " + area);
-                espera.Espera();
-            } else if (opcionCalculo == 3) {
-                double volumen = figura.calcularVolumen();
-                System.out.println("El volumen es: " + volumen);
-                espera.Espera();
             } else {
                 System.out.println("Opción inválida.");
             }
