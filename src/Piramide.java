@@ -58,7 +58,7 @@ class Piramide implements Figura {
 
     @Override
     public double calcularPerimetro() {
-        return 0;
+        return lado1+lado2+lado3;
     }
 
     @Override

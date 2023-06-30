@@ -22,7 +22,7 @@ class Cubo implements Figura {
 
     @Override
     public double calcularPerimetro() {
-        return 0;
+        return 12*arista;
     }
 
     @Override

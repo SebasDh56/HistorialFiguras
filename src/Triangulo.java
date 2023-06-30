@@ -30,7 +30,7 @@ class Triangulo implements Figura {
 
     @Override
     public double calcularPerimetro() {
-        return 0;
+        return lado3+lado2+lado1;
     }
 
     @Override

@@ -22,7 +22,7 @@ class Cuadrado implements Figura {
 
     @Override
     public double calcularPerimetro() {
-        return 0;
+        return 4*lado;
     }
 
     @Override
