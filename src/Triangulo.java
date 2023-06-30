@@ -1,57 +1,36 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 class Triangulo implements Figura {
-    private List<Punto> listaPuntos = new ArrayList<>();
+    private double lado1;
+    private double lado2;
+    private double lado3;
 
-    @Override
-    public double calcularPerimetro() {
-        double lado1 = calcularDistancia(0, 1);
-        double lado2 = calcularDistancia(1, 2);
-        double lado3 = calcularDistancia(2, 0);
-        return lado1 + lado2 + lado3;
+    public Triangulo(double x1, double y1, double z1, double x2, double y2, double z2,
+                     double x3, double y3, double z3) {
+        double distancia1 = calcularDistancia(x1, y1, z1, x2, y2, z2);
+        double distancia2 = calcularDistancia(x2, y2, z2, x3, y3, z3);
+        double distancia3 = calcularDistancia(x3, y3, z3, x1, y1, z1);
+        this.lado1 = distancia1;
+        this.lado2 = distancia2;
+        this.lado3 = distancia3;
+    }
+
+    private double calcularDistancia(double x1, double y1, double z1, double x2, double y2, double z2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2) + Math.pow(z2 - z1, 2));
     }
 
     @Override
     public double calcularArea() {
-        double lado1 = calcularDistancia(0, 1);
-        double lado2 = calcularDistancia(1, 2);
-        double lado3 = calcularDistancia(2, 0);
-        double semiperimetro = (lado1 + lado2 + lado3) / 2;
-        return Math.sqrt(semiperimetro * (semiperimetro - lado1) * (semiperimetro - lado2) * (semiperimetro - lado3));
+        double s = (lado1 + lado2 + lado3) / 2;
+        return Math.sqrt(s * (s - lado1) * (s - lado2) * (s - lado3));
     }
 
     @Override
-    public void ingresarPuntos() {
-        Scanner sc = new Scanner(System.in);
-
-        for (int i = 0; i < 3; i++) {
-            System.out.println("Ingresa la componente x del punto " + (i + 1) + ":");
-            double x = sc.nextDouble();
-            System.out.println("Ingresa la componente y del punto " + (i + 1) + ":");
-            double y = sc.nextDouble();
-            System.out.println("Ingresa la componente z del punto " + (i + 1) + ":");
-            double z = sc.nextDouble();
-
-            Punto punto = new Punto(x, y, z);
-            listaPuntos.add(punto);
-        }
+    public double calcularVolumen() {
+        return 0;
     }
 
     @Override
-    public void mostrarHistorial() {
-        for (int i = 0; i < listaPuntos.size(); i++) {
-            System.out.println("Punto " + (i + 1) + ": " + listaPuntos.get(i));
-        }
-    }
-
-    private double calcularDistancia(int i, int j) {
-        Punto punto1 = listaPuntos.get(i);
-        Punto punto2 = listaPuntos.get(j);
-        double distancia = Math.sqrt(Math.pow(punto1.getX() - punto2.getX(), 2) +
-                Math.pow(punto1.getY() - punto2.getY(), 2) +
-                Math.pow(punto1.getZ() - punto2.getZ(), 2));
-        return distancia;
+    public String toString() {
+        return "Triángulo - Lado 1: " + lado1 + " - Lado 2: " + lado2 + " - Lado 3: " + lado3
+                + " - Área: " + calcularArea();
     }
 }

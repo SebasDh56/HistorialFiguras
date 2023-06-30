@@ -1,62 +1,64 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 class Piramide implements Figura {
-    private List<Punto> listaPuntos = new ArrayList<>();
+    private double lado1;
+    private double lado2;
+    private double lado3;
+    private double altura;
 
-    @Override
-    public double calcularPerimetro() {
-        double lado1 = calcularDistancia(0, 1);
-        double lado2 = calcularDistancia(1, 2);
-        double lado3 = calcularDistancia(2, 0);
-        return lado1 + lado2 + lado3;
+    public Piramide(double x1, double y1, double z1, double x2, double y2, double z2,
+                    double x3, double y3, double z3, double x4, double y4, double z4) {
+        double distancia1 = calcularDistancia(x1, y1, z1, x2, y2, z2);
+        double distancia2 = calcularDistancia(x2, y2, z2, x3, y3, z3);
+        double distancia3 = calcularDistancia(x3, y3, z3, x1, y1, z1);
+        this.lado1 = distancia1;
+        this.lado2 = distancia2;
+        this.lado3 = distancia3;
+        this.altura = calcularDistancia(x4, y4, z4, calcularBaricentroX(x1, x2, x3), calcularBaricentroY(y1, y2, y3),
+                calcularBaricentroZ(z1, z2, z3));
+    }
+
+    private double calcularDistancia(double x1, double y1, double z1, double x2, double y2, double z2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2) + Math.pow(z2 - z1, 2));
+    }
+
+    private double calcularBaricentroX(double x1, double x2, double x3) {
+        return (x1 + x2 + x3) / 3;
+    }
+
+    private double calcularBaricentroY(double y1, double y2, double y3) {
+        return (y1 + y2 + y3) / 3;
+    }
+
+    private double calcularBaricentroZ(double z1, double z2, double z3) {
+        return (z1 + z2 + z3) / 3;
     }
 
     @Override
     public double calcularArea() {
-        double lado1 = calcularDistancia(0, 1);
-        double lado2 = calcularDistancia(1, 2);
-        double lado3 = calcularDistancia(2, 0);
-        double semiperimetro = (lado1 + lado2 + lado3) / 2;
-        double baseArea = Math.sqrt(semiperimetro * (semiperimetro - lado1) * (semiperimetro - lado2) * (semiperimetro - lado3));
+        double areaBase = calcularAreaTriangulo(lado1, lado2, lado3);
+        double areaLateral = calcularAreaTriangulo(lado1, altura) +
+                calcularAreaTriangulo(lado2, altura) +
+                calcularAreaTriangulo(lado3, altura);
+        return areaBase + areaLateral;
+    }
 
-        double altura = calcularDistancia(3, (int) baseArea);
-        double lateralArea = (lado1 + lado2 + lado3) * altura / 2;
+    private double calcularAreaTriangulo(double lado1, double lado2, double lado3) {
+        double s = (lado1 + lado2 + lado3) / 2;
+        return Math.sqrt(s * (s - lado1) * (s - lado2) * (s - lado3));
+    }
 
-        return baseArea + lateralArea;
+    private double calcularAreaTriangulo(double base, double altura) {
+        return (base * altura) / 2;
     }
 
     @Override
-    public void ingresarPuntos() {
-        Scanner sc = new Scanner(System.in);
-
-        for (int i = 0; i < 4; i++) {
-            System.out.println("Ingresa la componente x del punto " + (i + 1) + ":");
-            double x = sc.nextDouble();
-            System.out.println("Ingresa la componente y del punto " + (i + 1) + ":");
-            double y = sc.nextDouble();
-            System.out.println("Ingresa la componente z del punto " + (i + 1) + ":");
-            double z = sc.nextDouble();
-
-            Punto punto = new Punto(x, y, z);
-            listaPuntos.add(punto);
-        }
+    public double calcularVolumen() {
+        double areaBase = calcularAreaTriangulo(lado1, lado2, lado3);
+        return (areaBase * altura) / 3;
     }
 
     @Override
-    public void mostrarHistorial() {
-        for (int i = 0; i < listaPuntos.size(); i++) {
-            System.out.println("Punto " + (i + 1) + ": " + listaPuntos.get(i));
-        }
-    }
-
-    private double calcularDistancia(int i, int j) {
-        Punto punto1 = listaPuntos.get(i);
-        Punto punto2 = listaPuntos.get(j);
-        double distancia = Math.sqrt(Math.pow(punto1.getX() - punto2.getX(), 2) +
-                Math.pow(punto1.getY() - punto2.getY(), 2) +
-                Math.pow(punto1.getZ() - punto2.getZ(), 2));
-        return distancia;
+    public String toString() {
+        return "Pirámide - Lado 1: " + lado1 + " - Lado 2: " + lado2 + " - Lado 3: " + lado3
+                + " - Altura: " + altura + " - Área: " + calcularArea() + " - Volumen: " + calcularVolumen();
     }
 }

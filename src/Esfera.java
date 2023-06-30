@@ -1,4 +1,4 @@
-public class Esfera implements Figura {
+class Esfera implements Figura {
     private double radio;
 
     public Esfera(double radio) {
@@ -6,25 +6,17 @@ public class Esfera implements Figura {
     }
 
     @Override
-    public double calcularPerimetro() {
-        return 0;
-    }
-
     public double calcularArea() {
         return 4 * Math.PI * radio * radio;
     }
 
     @Override
-    public void ingresarPuntos() {
-
+    public double calcularVolumen() {
+        return (4 / 3) * Math.PI * Math.pow(radio, 3);
     }
 
     @Override
-    public void mostrarHistorial() {
-
-    }
-
-    public double calcularVolumen() {
-        return (4 / 3.0) * Math.PI * radio * radio * radio;
+    public String toString() {
+        return "Esfera - Radio: " + radio + " - Área: " + calcularArea() + " - Volumen: " + calcularVolumen();
     }
 }
