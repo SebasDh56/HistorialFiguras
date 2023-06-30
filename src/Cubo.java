@@ -21,6 +21,11 @@ class Cubo implements Figura {
     }
 
     @Override
+    public double calcularPerimetro() {
+        return 0;
+    }
+
+    @Override
     public String toString() {
         return "Cubo - Arista: " + arista + " - Área: " + calcularArea() + " - Volumen: " + calcularVolumen();
     }

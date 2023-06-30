@@ -16,6 +16,11 @@ class Esfera implements Figura {
     }
 
     @Override
+    public double calcularPerimetro() {
+        return 0;
+    }
+
+    @Override
     public String toString() {
         return "Esfera - Radio: " + radio + " - Área: " + calcularArea() + " - Volumen: " + calcularVolumen();
     }

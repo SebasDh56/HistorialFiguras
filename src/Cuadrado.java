@@ -21,6 +21,11 @@ class Cuadrado implements Figura {
     }
 
     @Override
+    public double calcularPerimetro() {
+        return 0;
+    }
+
+    @Override
     public String toString() {
         return "Cuadrado - Lado: " + lado + " - Área: " + calcularArea();
     }

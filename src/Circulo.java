@@ -16,6 +16,11 @@ class Circulo implements Figura {
     }
 
     @Override
+    public double calcularPerimetro() {
+        return 0;
+    }
+
+    @Override
     public String toString() {
         return "Círculo - Radio: " + radio + " - Área: " + calcularArea();
     }

@@ -57,6 +57,11 @@ class Piramide implements Figura {
     }
 
     @Override
+    public double calcularPerimetro() {
+        return 0;
+    }
+
+    @Override
     public String toString() {
         return "Pirámide - Lado 1: " + lado1 + " - Lado 2: " + lado2 + " - Lado 3: " + lado3
                 + " - Altura: " + altura + " - Área: " + calcularArea() + " - Volumen: " + calcularVolumen();
